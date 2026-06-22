@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <title>登录 / 注册 · AI for Everyone</title>
+  </head>
+  <body>
+    <div class="auth-wrap">
+      <!-- 左侧表单 -->
+      <div class="auth-form-col">
+        <div class="auth-form">
+          <a href="index.html" class="brand">
+            <span class="logo">AI</span>
+            <span class="brand-name">AI for Everyone</span>
+          </a>
+
+          <h1 data-title>欢迎回来</h1>
+          <p class="subtitle" data-subtitle>登录以继续观看视频教程。</p>
+
+          <div class="notice">
+            当前为本地体验模式（账号仅保存在本浏览器）。上线接入云数据库后，
+            将自动改为真实云端账户。
+          </div>
+
+          <form id="auth-form">
+            <div class="field">
+              <label for="email">邮箱</label>
+              <input
+                type="email"
+                id="email"
+                class="input"
+                placeholder="you@example.com"
+                autocomplete="email"
+              />
+            </div>
+            <div class="field">
+              <label for="password">密码</label>
+              <input
+                type="password"
+                id="password"
+                class="input"
+                placeholder="至少 6 位"
+                autocomplete="current-password"
+              />
+            </div>
+
+            <p class="form-msg" data-msg></p>
+
+            <button type="submit" class="btn btn-primary btn-block submit-btn" data-submit>
+              登录
+            </button>
+          </form>
+
+          <p class="switch-line">
+            <span data-switch-text>还没有账号？</span>
+            <button type="button" data-switch-btn>去注册</button>
+          </p>
+        </div>
+      </div>
+
+      <!-- 右侧视觉 -->
+      <div class="auth-visual">
+        <!-- 【可替换图片】登录页右侧配图，替换为 assets/login-side.jpg 后改下面 src -->
+        <img
+          src="https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&w=1600&q=80"
+          alt=""
+        />
+        <div class="visual-overlay"></div>
+        <div class="quote">
+          <p class="q">“复杂留给我，<br />简单留给你。”</p>
+          <p class="by">—— 让所有人都用上 AI</p>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script>
+      (function () {
+        // 已登录则直接进视频页
+        if (AUTH.getUser()) {
+          window.location.replace('videos.html');
+          return;
+        }
+
+        const params = new URLSearchParams(location.search);
+        let isSignup = params.get('mode') === 'signup';
+
+        const titleEl = document.querySelector('[data-title]');
+        const subtitleEl = document.querySelector('[data-subtitle]');
+        const submitBtn = document.querySelector('[data-submit]');
+        const switchText = document.querySelector('[data-switch-text]');
+        const switchBtn = document.querySelector('[data-switch-btn]');
+        const msgEl = document.querySelector('[data-msg]');
+        const form = document.getElementById('auth-form');
+        const emailEl = document.getElementById('email');
+        const passEl = document.getElementById('password');
+
+        function render() {
+          titleEl.textContent = isSignup ? '创建你的账号' : '欢迎回来';
+          subtitleEl.textContent = isSignup
+            ? '注册后即可解锁全部视频教程。'
+            : '登录以继续观看视频教程。';
+          submitBtn.textContent = isSignup ? '注册并进入' : '登录';
+          switchText.textContent = isSignup ? '已经有账号了？' : '还没有账号？';
+          switchBtn.textContent = isSignup ? '去登录' : '去注册';
+          passEl.autocomplete = isSignup ? 'new-password' : 'current-password';
+        }
+
+        function showMsg(text, type) {
+          msgEl.textContent = text;
+          msgEl.className = 'form-msg ' + type;
+        }
+        function clearMsg() {
+          msgEl.textContent = '';
+          msgEl.className = 'form-msg';
+        }
+
+        switchBtn.addEventListener('click', function () {
+          isSignup = !isSignup;
+          clearMsg();
+          render();
+        });
+
+        form.addEventListener('submit', async function (e) {
+          e.preventDefault();
+          clearMsg();
+          const email = emailEl.value;
+          const password = passEl.value;
+
+          if (!email.includes('@')) return showMsg('请输入有效的邮箱地址', 'error');
+          if (password.length < 6) return showMsg('密码至少需要 6 位', 'error');
+
+          submitBtn.disabled = true;
+          submitBtn.textContent = '处理中…';
+          const res = isSignup
+            ? await AUTH.signUp(email, password)
+            : await AUTH.signIn(email, password);
+          submitBtn.disabled = false;
+          render();
+
+          if (res.error) {
+            showMsg(res.error, 'error');
+            return;
+          }
+          window.location.replace('videos.html');
+        });
+
+        render();
+      })();
+    </script>
+  </body>
+</html>

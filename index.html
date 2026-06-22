@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="AI for Everyone · 让所有人都用上 AI —— 私域视频教程" />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <title>AI for Everyone · 让所有人都用上 AI</title>
+  </head>
+  <body>
+    <!-- ===== 导航栏（透明，滚动变实色） ===== -->
+    <header class="navbar" data-scroll-aware>
+      <div class="container nav-inner">
+        <a href="index.html" class="brand">
+          <span class="logo">AI</span>
+          <span class="brand-name">AI for Everyone</span>
+        </a>
+        <nav class="nav-actions" data-nav-actions></nav>
+      </div>
+    </header>
+
+    <!-- ===== Hero ===== -->
+    <section class="hero">
+      <div class="hero-bg">
+        <!-- 【可替换图片】首页主背景，把素材命名为 assets/hero.jpg 后将下面 src 改为 assets/hero.jpg -->
+        <img
+          src="https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=2400&q=80"
+          alt="SpaceX rocket launch"
+        />
+        <div class="hero-overlay-1"></div>
+        <div class="hero-overlay-2"></div>
+      </div>
+
+      <div class="hero-content">
+        <div class="badge animate-fade-in" style="animation-delay: 0.1s">
+          <span class="dot"></span>
+          私域视频教程 · 持续更新中
+        </div>
+
+        <h1 class="animate-fade-up" style="animation-delay: 0.2s">
+          AI for Everyone
+          <span class="sub">让所有人都用上 AI</span>
+        </h1>
+
+        <p class="lead animate-fade-up" style="animation-delay: 0.35s">
+          这是我的私域空间。我相信 AI 不该是少数人的特权 ——
+          在这里，我把自己探索 AI 的全部经验，做成一支支可以直接照做的视频教程，
+          陪你一起把 AI 真正用起来。
+        </p>
+
+        <div class="hero-actions animate-fade-up" style="animation-delay: 0.5s">
+          <a href="login.html?mode=signup" class="btn btn-white btn-block">
+            注册 / 登录，开始观看 <span aria-hidden="true">→</span>
+          </a>
+          <a href="#principle" class="btn btn-on-image btn-block">了解我的理念</a>
+        </div>
+      </div>
+
+      <div class="scroll-hint animate-fade-in" style="animation-delay: 1s">
+        <div class="mouse"><span class="wheel"></span></div>
+      </div>
+    </section>
+
+    <!-- ===== 理念区 ===== -->
+    <section id="principle" class="section">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">我的理念</p>
+          <h2>技术的红利，属于每一个愿意学习的人</h2>
+          <p>
+            就像 SpaceX 把通往太空的成本一降再降，我也想把使用 AI 的门槛
+            一降再降。复杂留给我，简单留给你。
+          </p>
+        </div>
+
+        <div class="cards">
+          <div class="card principle-card">
+            <div class="num">1</div>
+            <h3>人人可及</h3>
+            <p>把复杂的 AI 工具拆解成最直白的步骤，零基础也能上手。</p>
+          </div>
+          <div class="card principle-card">
+            <div class="num">2</div>
+            <h3>即学即用</h3>
+            <p>每一支视频都对应一个真实场景，看完就能用在自己的工作里。</p>
+          </div>
+          <div class="card principle-card">
+            <div class="num">3</div>
+            <h3>持续进化</h3>
+            <p>跟随 AI 浪潮持续更新，让你始终站在能力的最前沿。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 底部 CTA ===== -->
+    <section class="cta">
+      <div class="bg-grid"></div>
+      <div class="cta-inner">
+        <h2>准备好和我一起用上 AI 了吗？</h2>
+        <p>注册成为成员，即可解锁全部视频教程。</p>
+        <a href="login.html?mode=signup" class="btn btn-primary">
+          立即加入 <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===== 页脚 ===== -->
+    <footer class="footer">
+      <div class="container">
+        © <span data-year></span> AI for Everyone · 让所有人都用上 AI
+      </div>
+    </footer>
+
+    <script src="js/auth.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+      document.querySelector('[data-year]').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <title>视频教程 · AI for Everyone</title>
+    <!-- 登录守卫：未登录立即跳登录页 -->
+    <script>
+      (function () {
+        try {
+          if (!JSON.parse(localStorage.getItem('afe.user') || 'null')) {
+            window.location.replace('login.html');
+          }
+        } catch (e) {
+          window.location.replace('login.html');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="page">
+      <header class="navbar solid">
+        <div class="container nav-inner">
+          <a href="index.html" class="brand">
+            <span class="logo">AI</span>
+            <span class="brand-name">AI for Everyone</span>
+          </a>
+          <nav class="nav-actions" data-nav-actions></nav>
+        </div>
+      </header>
+
+      <main class="videos-main">
+        <div class="videos-head">
+          <p class="welcome">欢迎回来，<b data-user-email></b></p>
+          <h1>视频教程</h1>
+          <p class="desc">
+            这里是我为你整理的全部 AI 教程，按顺序看，或挑你需要的看。
+          </p>
+        </div>
+
+        <div class="video-grid" data-video-grid></div>
+
+        <p class="videos-note">
+          * 当前为示例视频。上线接入云数据库 / 视频存储后，将自动展示你上传的真实视频。
+        </p>
+      </main>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/videos-data.js"></script>
+  </body>
+</html>

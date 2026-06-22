@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <title>个人主页 · AI for Everyone</title>
+    <!-- 登录守卫：未登录立即跳登录页 -->
+    <script>
+      (function () {
+        try {
+          if (!JSON.parse(localStorage.getItem('afe.user') || 'null')) {
+            window.location.replace('login.html');
+          }
+        } catch (e) {
+          window.location.replace('login.html');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="page">
+      <header class="navbar solid">
+        <div class="container nav-inner">
+          <a href="index.html" class="brand">
+            <span class="logo">AI</span>
+            <span class="brand-name">AI for Everyone</span>
+          </a>
+          <nav class="nav-actions" data-nav-actions></nav>
+        </div>
+      </header>
+
+      <main class="profile-main">
+        <div class="profile-head">
+          <h1>个人主页</h1>
+          <p class="desc">管理你的头像、账户余额与收藏的视频教程。</p>
+        </div>
+
+        <div class="profile-grid">
+          <!-- ===== 个人头像 ===== -->
+          <section class="card profile-card" id="card-avatar">
+            <div class="card-title">
+              <h2>个人头像</h2>
+            </div>
+            <div class="avatar-row">
+              <span class="avatar-lg" data-avatar></span>
+              <div class="avatar-info">
+                <p class="email" data-user-email></p>
+                <p class="hint">支持 JPG / PNG，建议正方形图片。</p>
+                <div class="avatar-actions">
+                  <button class="btn btn-primary btn-sm" data-avatar-btn>
+                    更换头像
+                  </button>
+                  <input
+                    type="file"
+                    accept="image/png,image/jpeg"
+                    hidden
+                    data-avatar-input
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ===== 个人充值 ===== -->
+          <section class="card profile-card" id="card-recharge">
+            <div class="card-title">
+              <h2>账户充值</h2>
+            </div>
+            <div class="balance-box">
+              <span class="balance-label">当前余额</span>
+              <span class="balance-value">¥<b data-balance>0.00</b></span>
+            </div>
+            <div class="recharge-amounts" data-amounts>
+              <button class="amount-chip" data-amount="30">¥30</button>
+              <button class="amount-chip" data-amount="68">¥68</button>
+              <button class="amount-chip" data-amount="128">¥128</button>
+              <button class="amount-chip" data-amount="298">¥298</button>
+            </div>
+            <div class="recharge-custom">
+              <input
+                type="number"
+                min="1"
+                step="1"
+                class="input"
+                placeholder="自定义金额"
+                data-recharge-input
+              />
+              <button class="btn btn-primary" data-recharge-btn>充值</button>
+            </div>
+            <p class="form-msg" data-recharge-msg></p>
+            <p class="hint recharge-note">
+              * 当前为本地体验模式，充值不产生真实扣费。上线接入支付后将走真实支付流程。
+            </p>
+          </section>
+
+          <!-- ===== 我的收藏 ===== -->
+          <section class="card profile-card span-2" id="card-favorites">
+            <div class="card-title">
+              <h2>我的收藏</h2>
+              <span class="count-pill" data-fav-count>0</span>
+            </div>
+            <div class="video-grid" data-fav-grid></div>
+            <p class="empty-state" data-fav-empty hidden>
+              还没有收藏任何视频。去
+              <a href="videos.html">视频教程</a> 点亮你喜欢的内容吧。
+            </p>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/videos-data.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+      (function () {
+        const profile = PROFILE.getProfile();
+
+        /* ---------- 头像 ---------- */
+        const avatarEl = document.querySelector('[data-avatar]');
+        const emailEl = document.querySelector('[data-user-email]');
+        const avatarBtn = document.querySelector('[data-avatar-btn]');
+        const avatarInput = document.querySelector('[data-avatar-input]');
+
+        function paintAvatar(p) {
+          const initial = (p.email || '?').charAt(0).toUpperCase();
+          avatarEl.innerHTML = p.avatar
+            ? `<img src="${p.avatar}" alt="头像" />`
+            : `<span>${initial}</span>`;
+        }
+        if (emailEl) emailEl.textContent = profile.email;
+        paintAvatar(profile);
+
+        avatarBtn.addEventListener('click', () => avatarInput.click());
+        avatarInput.addEventListener('change', (e) => {
+          const file = e.target.files && e.target.files[0];
+          if (!file) return;
+          if (file.size > 2 * 1024 * 1024) {
+            alert('图片请控制在 2MB 以内');
+            return;
+          }
+          const reader = new FileReader();
+          reader.onload = async () => {
+            const res = await PROFILE.setAvatar(reader.result);
+            if (!res.error) {
+              paintAvatar({ ...profile, avatar: res.avatar });
+              // 同步刷新导航栏头像
+              if (typeof renderNavActions === 'function') renderNavActions();
+            }
+          };
+          reader.readAsDataURL(file);
+        });
+
+        /* ---------- 充值 ---------- */
+        const balanceEl = document.querySelector('[data-balance]');
+        const rechargeInput = document.querySelector('[data-recharge-input]');
+        const rechargeBtn = document.querySelector('[data-recharge-btn]');
+        const rechargeMsg = document.querySelector('[data-recharge-msg]');
+        const amountsBox = document.querySelector('[data-amounts]');
+
+        function paintBalance(v) {
+          balanceEl.textContent = Number(v).toFixed(2);
+        }
+        paintBalance(profile.balance);
+
+        amountsBox.addEventListener('click', (e) => {
+          const chip = e.target.closest('[data-amount]');
+          if (!chip) return;
+          amountsBox
+            .querySelectorAll('.amount-chip')
+            .forEach((c) => c.classList.remove('active'));
+          chip.classList.add('active');
+          rechargeInput.value = chip.dataset.amount;
+        });
+
+        function showRechargeMsg(text, type) {
+          rechargeMsg.textContent = text;
+          rechargeMsg.className = 'form-msg ' + type;
+        }
+
+        rechargeBtn.addEventListener('click', async () => {
+          const amount = rechargeInput.value;
+          rechargeBtn.disabled = true;
+          const res = await PROFILE.recharge(amount);
+          rechargeBtn.disabled = false;
+          if (res.error) {
+            showRechargeMsg(res.error, 'error');
+            return;
+          }
+          paintBalance(res.balance);
+          showRechargeMsg('充值成功，余额已到账', 'success');
+          rechargeInput.value = '';
+          amountsBox
+            .querySelectorAll('.amount-chip')
+            .forEach((c) => c.classList.remove('active'));
+        });
+
+        /* ---------- 收藏 ---------- */
+        const favGrid = document.querySelector('[data-fav-grid]');
+        const favEmpty = document.querySelector('[data-fav-empty]');
+        const favCount = document.querySelector('[data-fav-count]');
+
+        function renderFavorites() {
+          const ids = PROFILE.getFavorites();
+          const items = (typeof VIDEOS !== 'undefined' ? VIDEOS : []).filter(
+            (v) => ids.includes(String(v.id)),
+          );
+          favCount.textContent = items.length;
+          if (!items.length) {
+            favGrid.innerHTML = '';
+            favEmpty.hidden = false;
+            return;
+          }
+          favEmpty.hidden = true;
+          favGrid.innerHTML = items
+            .map(
+              (v) => `
+            <article class="card video-card">
+              <div class="video-thumb">
+                <img src="${escapeHtml(v.cover)}" alt="${escapeHtml(v.title)}" />
+                <div class="thumb-overlay"></div>
+                <button class="fav-btn active" data-unfav="${escapeHtml(
+                  v.id,
+                )}" title="取消收藏">${HEART_ICON}</button>
+                <span class="tag">${escapeHtml(v.tag)}</span>
+                <span class="duration">${escapeHtml(v.duration)}</span>
+              </div>
+              <div class="video-body">
+                <h3>${escapeHtml(v.title)}</h3>
+                <p>${escapeHtml(v.description)}</p>
+              </div>
+            </article>`,
+            )
+            .join('');
+        }
+
+        favGrid.addEventListener('click', async (e) => {
+          const btn = e.target.closest('[data-unfav]');
+          if (!btn) return;
+          await PROFILE.toggleFavorite(btn.dataset.unfav);
+          renderFavorites();
+        });
+
+        renderFavorites();
+      })();
+    </script>
+  </body>
+</html>
