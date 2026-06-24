@@ -58,6 +58,9 @@
                   <button class="btn btn-primary btn-sm" data-avatar-btn>
                     更换头像
                   </button>
+                  <button class="btn btn-ghost btn-sm" data-signout>
+                    退出登录
+                  </button>
                   <input
                     type="file"
                     accept="image/png,image/jpeg"
@@ -141,6 +144,15 @@
         paintAvatar(profile);
 
         avatarBtn.addEventListener('click', () => avatarInput.click());
+
+        /* ---------- 退出登录 ---------- */
+        const signoutBtn = document.querySelector('[data-signout]');
+        if (signoutBtn) {
+          signoutBtn.addEventListener('click', () => {
+            AUTH.signOut();
+            window.location.href = 'index.html';
+          });
+        }
         avatarInput.addEventListener('change', (e) => {
           const file = e.target.files && e.target.files[0];
           if (!file) return;

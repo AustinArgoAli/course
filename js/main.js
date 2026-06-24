@@ -18,17 +18,12 @@ function renderNavActions() {
         : `<span>${initial}</span>`;
 
     box.innerHTML = `
-      <a href="videos.html" class="nav-link hide-sm">视频教程</a>
-      <a href="profile.html" class="nav-home" title="个人主页">
+      <a href="videos.html" class="nav-link">视频教程</a>
+      <a href="profile.html" class="nav-link nav-home" title="个人主页">
         <span class="nav-avatar">${avatarInner}</span>
         <span class="hide-sm">主页</span>
       </a>
-      <button class="btn btn-ghost btn-sm" data-signout>退出</button>
     `;
-    box.querySelector('[data-signout]')?.addEventListener('click', () => {
-      AUTH.signOut();
-      window.location.href = 'index.html';
-    });
   } else {
     box.innerHTML = `
       <a href="login.html" class="nav-link">登录</a>
