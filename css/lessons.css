@@ -1,0 +1,1151 @@
+/* ============================================================
+   教案 / 教程页 —— 深色冷色调主题
+   用于：lessons.html（教案列表）与各 lesson-*.html（单个教案）
+   依赖：styles.css（复用 .container / .navbar / .nav-link 等）
+   ============================================================ */
+
+:root {
+  --ink-950: #05070d;
+  --ink-900: #0a0f1a;
+  --ink-850: #0d1422;
+  --ink-800: #111a2b;
+  --ink-700: #1a2740;
+  --ink-600: #243453;
+  --line: rgba(148, 163, 184, 0.16);
+  --line-soft: rgba(148, 163, 184, 0.1);
+  --cyan: #38bdf8;
+  --cyan-soft: #7dd3fc;
+  --indigo: #6366f1;
+  --txt-100: #e6edf7;
+  --txt-300: #aab6c9;
+  --txt-500: #7c8aa3;
+}
+
+/* ---------- 深色页面基底 ---------- */
+body.lesson {
+  background: var(--ink-900);
+  color: var(--txt-300);
+}
+body.lesson::selection {
+  background: rgba(56, 189, 248, 0.3);
+}
+
+/* 深色页滚动条 */
+body.lesson::-webkit-scrollbar-track {
+  background: var(--ink-850);
+}
+body.lesson::-webkit-scrollbar-thumb {
+  background: var(--ink-600);
+}
+body.lesson::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-700);
+}
+
+/* ---------- 深色导航栏覆盖 ---------- */
+.navbar.lesson-nav {
+  position: fixed;
+  background: rgba(10, 15, 26, 0.72);
+  backdrop-filter: saturate(140%) blur(14px);
+  -webkit-backdrop-filter: saturate(140%) blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+.navbar.lesson-nav .logo {
+  background: linear-gradient(135deg, var(--cyan), var(--indigo));
+  color: #04111f;
+}
+.navbar.lesson-nav .brand-name {
+  color: var(--txt-100);
+}
+.navbar.lesson-nav .nav-link {
+  color: var(--txt-300);
+}
+.navbar.lesson-nav .nav-link:hover {
+  color: #fff;
+  background: rgba(148, 163, 184, 0.12);
+}
+.navbar.lesson-nav .nav-link.active {
+  color: var(--cyan-soft);
+}
+
+/* ============================================================
+   教案列表页 lessons.html
+   ============================================================ */
+.lessons-main {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 132px 24px 96px;
+}
+.lessons-head {
+  text-align: center;
+  margin-bottom: 56px;
+}
+.lessons-head .eyebrow {
+  color: var(--cyan);
+  letter-spacing: 0.24em;
+}
+.lessons-head h1 {
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 14px 0 16px;
+  color: var(--txt-100);
+  letter-spacing: -0.02em;
+}
+.lessons-head p {
+  max-width: 640px;
+  margin: 0 auto;
+  font-size: 17px;
+  color: var(--txt-500);
+}
+
+.lesson-list {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 720px) {
+  .lesson-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.lesson-link-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 28px 30px;
+  border-radius: 20px;
+  background: linear-gradient(160deg, var(--ink-800), var(--ink-850));
+  border: 1px solid var(--line);
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.lesson-link-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    520px circle at var(--mx, 80%) -20%,
+    rgba(56, 189, 248, 0.16),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.lesson-link-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(56, 189, 248, 0.4);
+  box-shadow: 0 22px 50px rgba(2, 8, 20, 0.6);
+}
+.lesson-link-card:hover::before {
+  opacity: 1;
+}
+.lesson-link-card .idx {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--cyan-soft);
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.22);
+}
+.lesson-link-card .body {
+  flex: 1;
+  min-width: 0;
+}
+.lesson-link-card h3 {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--txt-100);
+  margin-bottom: 6px;
+}
+.lesson-link-card p {
+  font-size: 14px;
+  color: var(--txt-500);
+}
+.lesson-link-card .arrow {
+  flex-shrink: 0;
+  color: var(--txt-500);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+.lesson-link-card:hover .arrow {
+  transform: translateX(6px);
+  color: var(--cyan);
+}
+
+/* ============================================================
+   单个教案页 lesson-*.html —— 全屏分块 + 滚动渐入
+   ============================================================ */
+.lesson-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--cyan), var(--indigo));
+  z-index: 200;
+  transition: width 0.1s linear;
+}
+
+.lesson-block {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 120px 24px;
+  border-bottom: 1px solid var(--line-soft);
+}
+.lesson-block .inner {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+/* 章节分割：部分标题 */
+.part-divider {
+  text-align: center;
+  padding: 140px 24px;
+  background: radial-gradient(
+    900px circle at 50% 30%,
+    rgba(56, 189, 248, 0.1),
+    transparent 60%
+  );
+}
+.part-divider .part-tag {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--cyan);
+}
+.part-divider h2 {
+  font-size: clamp(30px, 5vw, 56px);
+  font-weight: 800;
+  color: var(--txt-100);
+  margin-top: 18px;
+  letter-spacing: -0.02em;
+}
+
+/* 区块通用文字 */
+.lesson-kicker {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 18px;
+}
+.lesson-h {
+  font-size: clamp(28px, 4.4vw, 48px);
+  font-weight: 800;
+  line-height: 1.14;
+  color: var(--txt-100);
+  letter-spacing: -0.02em;
+  margin-bottom: 22px;
+}
+.lesson-lead {
+  font-size: clamp(16px, 2vw, 20px);
+  color: var(--txt-300);
+  max-width: 760px;
+  line-height: 1.7;
+}
+
+/* ---------- 首屏 Hero ---------- */
+.lesson-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.lesson-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.lesson-hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.42;
+  filter: grayscale(0.2) contrast(1.05);
+}
+.lesson-hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+      to bottom,
+      rgba(10, 15, 26, 0.55) 0%,
+      rgba(10, 15, 26, 0.7) 55%,
+      var(--ink-900) 100%
+    ),
+    radial-gradient(800px circle at 70% 30%, rgba(56, 189, 248, 0.18), transparent 60%);
+}
+.lesson-hero .inner {
+  position: relative;
+  z-index: 1;
+}
+.lesson-hero h1 {
+  font-size: clamp(40px, 8vw, 96px);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  color: #fff;
+  text-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+}
+.lesson-hero .hero-sub {
+  margin-top: 24px;
+  font-size: clamp(16px, 2.2vw, 22px);
+  color: var(--txt-300);
+  max-width: 620px;
+}
+
+/* ---------- 案例横排 / 纵列卡 ---------- */
+.case-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin-top: 44px;
+}
+.case-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--ink-800);
+  border: 1px solid var(--line);
+}
+@media (min-width: 760px) {
+  .case-card {
+    grid-template-columns: 300px 1fr;
+  }
+  .case-card.flip {
+    grid-template-columns: 1fr 300px;
+  }
+  .case-card.flip .case-media {
+    order: 2;
+  }
+}
+.case-media {
+  position: relative;
+  min-height: 200px;
+  background: var(--ink-700);
+}
+.case-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.9;
+}
+.case-body {
+  padding: 30px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.case-body .metric {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 800;
+  color: var(--cyan-soft);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.case-body h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--txt-100);
+  margin: 8px 0 10px;
+}
+.case-body p {
+  font-size: 15px;
+  color: var(--txt-300);
+  line-height: 1.7;
+}
+
+/* ---------- 大厂动态卡片网格 ---------- */
+.move-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: 1fr;
+  margin-top: 40px;
+}
+@media (min-width: 700px) {
+  .move-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: 1000px) {
+  .move-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.move-card {
+  padding: 26px;
+  border-radius: 18px;
+  background: linear-gradient(160deg, var(--ink-800), var(--ink-850));
+  border: 1px solid var(--line);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.move-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(56, 189, 248, 0.32);
+}
+.move-card .brand {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--cyan);
+  text-transform: uppercase;
+}
+.move-card h4 {
+  font-size: 18px;
+  color: var(--txt-100);
+  margin: 10px 0 8px;
+}
+.move-card p {
+  font-size: 14px;
+  color: var(--txt-500);
+  line-height: 1.65;
+}
+
+/* ---------- 名词云（动态浮现，大小不同） ---------- */
+.term-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 22px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 48px;
+  max-width: 960px;
+  margin-inline: auto;
+}
+.term {
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--txt-300);
+  opacity: 0;
+  transform: translateY(16px) scale(0.9);
+  animation: termFloat 0.7s ease forwards;
+  transition: color 0.3s ease;
+  cursor: default;
+}
+.term:hover {
+  color: var(--cyan-soft);
+}
+.term.sz-1 { font-size: 18px; color: var(--txt-500); }
+.term.sz-2 { font-size: 26px; }
+.term.sz-3 { font-size: 38px; color: var(--txt-100); }
+.term.sz-4 { font-size: 54px; color: #fff; }
+.term.hot {
+  background: linear-gradient(120deg, var(--cyan), var(--indigo));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+@keyframes termFloat {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes drift {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.is-visible .term {
+  animation: termFloat 0.7s ease forwards;
+}
+
+/* ---------- 数据统计 ---------- */
+.stat-grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1fr;
+  margin-top: 48px;
+}
+@media (min-width: 700px) {
+  .stat-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: 1000px) {
+  .stat-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+.stat {
+  text-align: center;
+  padding: 34px 20px;
+  border-radius: 18px;
+  background: var(--ink-850);
+  border: 1px solid var(--line);
+}
+.stat .num {
+  font-size: clamp(36px, 6vw, 56px);
+  font-weight: 800;
+  line-height: 1;
+  background: linear-gradient(120deg, var(--cyan), var(--indigo));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.stat .label {
+  margin-top: 14px;
+  font-size: 14px;
+  color: var(--txt-300);
+  line-height: 1.5;
+}
+
+/* ---------- 维度 / 步骤列表 ---------- */
+.dim-list {
+  display: grid;
+  gap: 20px;
+  margin-top: 40px;
+}
+.dim-item {
+  display: flex;
+  gap: 22px;
+  align-items: flex-start;
+  padding: 26px 28px;
+  border-radius: 18px;
+  background: var(--ink-850);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--cyan);
+}
+.dim-item .n {
+  flex-shrink: 0;
+  font-size: 30px;
+  font-weight: 800;
+  color: rgba(56, 189, 248, 0.4);
+  line-height: 1;
+  width: 48px;
+}
+.dim-item h4 {
+  font-size: 19px;
+  color: var(--txt-100);
+  margin-bottom: 8px;
+}
+.dim-item p {
+  font-size: 15px;
+  color: var(--txt-300);
+  line-height: 1.7;
+}
+
+/* ---------- 单维度整屏：左图右文 ---------- */
+.dim-page .inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  align-items: center;
+}
+@media (min-width: 860px) {
+  .dim-page .inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+  }
+}
+.dim-figure {
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background: var(--ink-800);
+  border: 1px solid var(--line);
+}
+.dim-figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.dim-figure .dim-no {
+  position: absolute;
+  left: 18px;
+  top: 14px;
+  font-size: 60px;
+  font-weight: 800;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
+}
+.dim-text .dim-tag {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 14px;
+}
+.dim-text h2 {
+  font-size: clamp(26px, 3.6vw, 42px);
+  font-weight: 800;
+  line-height: 1.18;
+  color: var(--txt-100);
+  letter-spacing: -0.02em;
+  margin-bottom: 18px;
+}
+.dim-text p {
+  font-size: clamp(16px, 1.8vw, 19px);
+  line-height: 1.8;
+  color: var(--txt-300);
+}
+
+/* 交替：图在右、文在左 */
+@media (min-width: 860px) {
+  .dim-page-rev .dim-figure {
+    order: 2;
+  }
+  .dim-page-rev .dim-text {
+    order: 1;
+  }
+}
+
+/* ---------- 证据图表（CSS 绘制，无外部依赖） ---------- */
+/* 图表外框，复用 dim-figure 的位置，但不裁剪、不固定比例 */
+.chart-box {
+  position: relative;
+  border-radius: 22px;
+  padding: 30px 28px;
+  background: var(--ink-800);
+  border: 1px solid var(--line);
+}
+.chart-title {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--txt-300);
+  margin-bottom: 22px;
+}
+
+/* 竖向柱状图 */
+.bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 18px;
+  height: 240px;
+}
+.bars .bar {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  gap: 10px;
+}
+.bars .bar .col {
+  width: 100%;
+  max-width: 56px;
+  border-radius: 10px 10px 0 0;
+  background: linear-gradient(180deg, var(--cyan), #2563eb);
+  height: var(--h, 40%);
+  transition: height 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 24px rgba(56, 189, 248, 0.25);
+}
+.reveal:not(.is-visible) .bars .bar .col {
+  height: 0 !important;
+}
+.bars .bar .bv {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--txt-100);
+}
+.bars .bar .bl {
+  font-size: 12px;
+  color: var(--txt-300);
+  text-align: center;
+}
+
+/* 横向进度/占比条 */
+.hbars {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.hbar .hbar-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 7px;
+}
+.hbar .hbar-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--txt-100);
+}
+.hbar .hbar-val {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--cyan);
+}
+.hbar .track {
+  height: 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+.hbar .fill {
+  height: 100%;
+  border-radius: 999px;
+  width: var(--w, 50%);
+  background: linear-gradient(90deg, var(--cyan), #7c3aed);
+  transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal:not(.is-visible) .hbar .fill {
+  width: 0 !important;
+}
+
+/* 数据徽标网格（大数字 + 标签） */
+.kpis {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.kpi {
+  border-radius: 14px;
+  padding: 16px 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--line);
+}
+.kpi .kn {
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 900;
+  line-height: 1;
+  background: linear-gradient(120deg, var(--cyan), #7c3aed);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.kpi .kl {
+  margin-top: 8px;
+  font-size: 12.5px;
+  color: var(--txt-300);
+  line-height: 1.5;
+}
+
+/* 厂商标签云（用于国产模型矩阵） */
+.vendor-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 4px;
+}
+.vendor-tags .vt {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--txt-100);
+  padding: 8px 13px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--line);
+}
+.vendor-tags .vt b {
+  color: var(--cyan);
+  font-weight: 800;
+}
+
+/* ---------- 行动步骤（带连接线） ---------- */
+.steps {
+  margin-top: 44px;
+  position: relative;
+}
+.step {
+  position: relative;
+  padding: 0 0 40px 64px;
+}
+.step::before {
+  content: '';
+  position: absolute;
+  left: 23px;
+  top: 8px;
+  bottom: -8px;
+  width: 2px;
+  background: linear-gradient(var(--cyan), transparent);
+}
+.step:last-child::before {
+  display: none;
+}
+.step .dot {
+  position: absolute;
+  left: 8px;
+  top: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 14px;
+  color: #04111f;
+  background: linear-gradient(135deg, var(--cyan), var(--indigo));
+}
+.step h4 {
+  font-size: 19px;
+  color: var(--txt-100);
+  margin-bottom: 8px;
+}
+.step p {
+  font-size: 15px;
+  color: var(--txt-300);
+  line-height: 1.7;
+}
+
+/* ---------- 返回教案列表浮动按钮 ---------- */
+.lesson-back {
+  position: fixed;
+  left: 24px;
+  bottom: 24px;
+  z-index: 120;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--txt-100);
+  background: rgba(17, 26, 43, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--line);
+  transition: border-color 0.3s ease, transform 0.2s ease;
+}
+.lesson-back:hover {
+  border-color: var(--cyan);
+  transform: translateY(-2px);
+}
+
+/* ---------- 教案页脚 ---------- */
+.lesson-foot {
+  text-align: center;
+  padding: 60px 24px;
+  font-size: 14px;
+  color: var(--txt-500);
+  border-top: 1px solid var(--line);
+}
+
+/* ============================================================
+   滚动渐入 / 渐出（旧内容淡出，新内容浮现）
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(48px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* 离开视口时淡出（旧内容渐出） */
+.reveal.is-leaving {
+  opacity: 0.12;
+  transform: translateY(-32px);
+}
+.reveal.d1 { transition-delay: 0.08s; }
+.reveal.d2 { transition-delay: 0.16s; }
+.reveal.d3 { transition-delay: 0.24s; }
+.reveal.d4 { transition-delay: 0.32s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal.is-leaving {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ============================================================
+   浅色教案主题覆盖（仅作用于 body.lesson.light）
+   用于：lesson-ai-status.html —— 整页浅色，仅 Hero 用图片+灰色遮罩
+   其他教案页（深色）不受影响
+   ============================================================ */
+body.lesson.light {
+  background: #f6f8fb;
+  color: #334155;
+}
+body.lesson.light::selection {
+  background: rgba(56, 189, 248, 0.25);
+}
+body.lesson.light::-webkit-scrollbar-track {
+  background: #e8edf3;
+}
+body.lesson.light::-webkit-scrollbar-thumb {
+  background: #c3ccd9;
+}
+body.lesson.light::-webkit-scrollbar-thumb:hover {
+  background: #aab6c9;
+}
+
+/* 区块分隔线改浅 */
+.lesson.light .lesson-block {
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+/* 通用文字转深色 */
+.lesson.light .lesson-kicker {
+  color: #2563eb;
+}
+.lesson.light .lesson-h {
+  color: #0f172a;
+}
+.lesson.light .lesson-lead {
+  color: #475569;
+}
+
+/* part 分隔标题 */
+.lesson.light .part-divider {
+  background: radial-gradient(
+    900px circle at 50% 30%,
+    rgba(37, 99, 235, 0.08),
+    transparent 60%
+  );
+}
+.lesson.light .part-divider .part-tag {
+  color: #2563eb;
+}
+.lesson.light .part-divider h2 {
+  color: #0f172a;
+}
+
+/* ---------- 浅色 Hero：保留原图 + 灰色低透明度遮罩 ---------- */
+.lesson.light .lesson-hero-bg img {
+  opacity: 1;
+  filter: none;
+}
+.lesson.light .lesson-hero-bg::after {
+  background: rgba(60, 66, 78, 0.45);
+}
+.lesson.light .lesson-hero h1 {
+  color: #fff;
+  font-size: clamp(56px, 10vw, 128px);
+  line-height: 1.0;
+  text-shadow: 0 6px 30px rgba(0, 0, 0, 0.45);
+}
+.lesson.light .lesson-hero .hero-sub {
+  color: #f1f5f9;
+  font-size: clamp(20px, 3vw, 32px);
+  line-height: 1.55;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+  max-width: 860px;
+}
+
+/* ---------- 案例卡片浅色化 ---------- */
+.lesson.light .case-card {
+  background: #fff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+}
+.lesson.light .case-media {
+  background: #e8edf3;
+}
+.lesson.light .case-media img {
+  opacity: 1;
+}
+.lesson.light .case-body .metric {
+  color: #2563eb;
+}
+.lesson.light .case-body h3 {
+  color: #0f172a;
+}
+.lesson.light .case-body p {
+  color: #475569;
+}
+
+/* ---------- 大厂动态卡片浅色化 ---------- */
+.lesson.light .move-card {
+  background: #fff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+}
+.lesson.light .move-card:hover {
+  border-color: rgba(37, 99, 235, 0.4);
+}
+.lesson.light .move-card .brand {
+  color: #2563eb;
+}
+.lesson.light .move-card h4 {
+  color: #0f172a;
+}
+.lesson.light .move-card p {
+  color: #64748b;
+}
+
+/* ---------- 名词云浅色化 ---------- */
+.lesson.light .term {
+  color: #64748b;
+}
+.lesson.light .term:hover {
+  color: #2563eb;
+}
+.lesson.light .term.sz-1 {
+  color: #94a3b8;
+}
+.lesson.light .term.sz-3 {
+  color: #1e293b;
+}
+.lesson.light .term.sz-4 {
+  color: #0f172a;
+}
+.lesson.light .term.hot {
+  background: linear-gradient(120deg, #2563eb, #7c3aed);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ---------- 数据统计浅色化 ---------- */
+.lesson.light .stat {
+  background: #fff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+}
+.lesson.light .stat .num {
+  background: linear-gradient(120deg, #2563eb, #7c3aed);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.lesson.light .stat .label {
+  color: #475569;
+}
+
+/* ---------- 维度列表浅色化 ---------- */
+.lesson.light .dim-item {
+  background: #fff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-left: 3px solid #2563eb;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+}
+.lesson.light .dim-item .n {
+  color: rgba(37, 99, 235, 0.35);
+}
+.lesson.light .dim-item h4 {
+  color: #0f172a;
+}
+.lesson.light .dim-item p {
+  color: #475569;
+}
+
+/* 单维度整屏左图右文 —— 浅色 */
+.lesson.light .dim-figure {
+  background: #e8edf3;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 14px 36px rgba(15, 23, 42, 0.08);
+}
+.lesson.light .dim-text .dim-tag {
+  color: #2563eb;
+}
+.lesson.light .dim-text h2 {
+  color: #0f172a;
+}
+.lesson.light .dim-text p {
+  color: #475569;
+}
+
+/* ---------- 证据图表 —— 浅色 ---------- */
+.lesson.light .chart-box {
+  background: #fff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 14px 36px rgba(15, 23, 42, 0.08);
+}
+.lesson.light .chart-title {
+  color: #64748b;
+}
+.lesson.light .bars .bar .col {
+  background: linear-gradient(180deg, #38bdf8, #2563eb);
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.22);
+}
+.lesson.light .bars .bar .bv {
+  color: #0f172a;
+}
+.lesson.light .bars .bar .bl {
+  color: #64748b;
+}
+.lesson.light .hbar .hbar-name {
+  color: #0f172a;
+}
+.lesson.light .hbar .hbar-val {
+  color: #2563eb;
+}
+.lesson.light .hbar .track {
+  background: rgba(15, 23, 42, 0.07);
+}
+.lesson.light .hbar .fill {
+  background: linear-gradient(90deg, #2563eb, #7c3aed);
+}
+.lesson.light .kpi {
+  background: #f6f8fb;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+}
+.lesson.light .kpi .kn {
+  background: linear-gradient(120deg, #2563eb, #7c3aed);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.lesson.light .kpi .kl {
+  color: #64748b;
+}
+.lesson.light .vendor-tags .vt {
+  color: #0f172a;
+  background: #f6f8fb;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+}
+.lesson.light .vendor-tags .vt b {
+  color: #2563eb;
+}
+
+/* ---------- 行动步骤浅色化 ---------- */
+.lesson.light .step::before {
+  background: linear-gradient(#2563eb, transparent);
+}
+.lesson.light .step .dot {
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  color: #fff;
+}
+.lesson.light .step h4 {
+  color: #0f172a;
+}
+.lesson.light .step p {
+  color: #475569;
+}
+
+/* 浅色页里强调色文字（原来用 --cyan-soft 内联色，在浅底上偏淡，加深） */
+.lesson.light b[style*='--cyan-soft'] {
+  color: #2563eb !important;
+}
+
+/* ---------- 返回按钮浅色化 ---------- */
+.lesson.light .lesson-back {
+  color: #0f172a;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.08);
+}
+.lesson.light .lesson-back:hover {
+  border-color: #2563eb;
+}
+
+/* ---------- 页脚浅色化 ---------- */
+.lesson.light .lesson-foot {
+  color: #94a3b8;
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+/* 进度条在浅底上也清晰 */
+.lesson.light .lesson-progress {
+  background: linear-gradient(90deg, #2563eb, #7c3aed);
+}

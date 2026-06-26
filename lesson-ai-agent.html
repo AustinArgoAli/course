@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="AI Agent 是什么 —— 课堂教案" />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/lessons.css" />
+    <title>AI Agent 是什么 · 教案</title>
+  </head>
+  <body class="lesson">
+    <div class="lesson-progress"></div>
+
+    <header class="navbar solid lesson-nav">
+      <div class="container nav-inner">
+        <a href="index.html" class="brand">
+          <span class="logo">AI</span>
+          <span class="brand-name">AI for Everyone</span>
+        </a>
+        <nav class="nav-actions" data-nav-actions></nav>
+      </div>
+    </header>
+
+    <section class="lesson-hero">
+      <div class="lesson-hero-bg">
+        <img
+          src="https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&w=2400&q=80"
+          alt="智能体抽象背景"
+        />
+      </div>
+      <div class="inner">
+        <h1 class="reveal">AI Agent<br />是什么？</h1>
+        <p class="hero-sub reveal d2">
+          从"会聊天"到"会做事"—— 智能体，是能自己规划、调用工具、完成任务的 AI。
+        </p>
+      </div>
+    </section>
+
+    <section class="lesson-block">
+      <div class="inner">
+        <span class="lesson-kicker reveal">本质区别</span>
+        <h2 class="lesson-h reveal">大模型回答问题，Agent 替你办事</h2>
+        <p class="lesson-lead reveal d1">
+          普通大模型像一个"无所不知的顾问"，你问它答；而 Agent 更像一个"能干活的助理"——
+          你给它一个目标，它会自己拆解步骤、调用工具、一步步执行，直到把事情办成。
+        </p>
+      </div>
+    </section>
+
+    <section class="lesson-block">
+      <div class="inner">
+        <span class="lesson-kicker reveal">它怎么干活</span>
+        <h2 class="lesson-h reveal">感知 → 规划 → 调用工具 → 执行</h2>
+        <div class="steps">
+          <div class="step reveal">
+            <div class="dot">1</div>
+            <h4>理解目标</h4>
+            <p>听懂你要什么，比如"帮我订一张明天去上海最便宜的高铁票"。</p>
+          </div>
+          <div class="step reveal d1">
+            <div class="dot">2</div>
+            <h4>拆解规划</h4>
+            <p>把大目标拆成小步骤：查车次 → 比价 → 选座 → 下单 → 付款。</p>
+          </div>
+          <div class="step reveal d2">
+            <div class="dot">3</div>
+            <h4>调用工具</h4>
+            <p>调用搜索、订票接口、支付等工具来真正执行每一步，而不只是"说说"。</p>
+          </div>
+          <div class="step reveal d3">
+            <div class="dot">4</div>
+            <h4>反馈与纠错</h4>
+            <p>遇到问题会自己调整方案、重试，最终把结果交付给你。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lesson-block">
+      <div class="inner">
+        <span class="lesson-kicker reveal">能用来做什么</span>
+        <h2 class="lesson-h reveal">从写代码到跑流程，它都能上</h2>
+        <div class="move-grid">
+          <div class="move-card reveal">
+            <span class="brand">编程</span>
+            <h4>自动写代码、改 Bug</h4>
+            <p>读懂需求后自己改文件、跑测试、修复错误。</p>
+          </div>
+          <div class="move-card reveal d1">
+            <span class="brand">办公</span>
+            <h4>自动整理资料、出报告</h4>
+            <p>检索、汇总、生成文档，一条龙完成。</p>
+          </div>
+          <div class="move-card reveal d2">
+            <span class="brand">运营</span>
+            <h4>自动跑流程、发内容</h4>
+            <p>按设定的工作流定时执行重复性任务。</p>
+          </div>
+        </div>
+        <p class="lesson-lead reveal d2" style="margin-top: 32px; font-size: 14px; color: var(--txt-500)">
+          * 本页为示例内容框架，可在此基础上补充你自己的讲解与案例。
+        </p>
+      </div>
+    </section>
+
+    <footer class="lesson-foot">© <span data-year></span> AI for Everyone · 教案《AI Agent 是什么》</footer>
+    <a class="lesson-back" href="lessons.html">← 返回教案列表</a>
+
+    <script src="js/auth.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/lessons.js"></script>
+    <script>
+      document.querySelector('[data-year]').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

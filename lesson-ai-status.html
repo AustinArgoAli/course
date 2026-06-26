@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="AI 到底怎么样了 —— 课堂教案" />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/lessons.css" />
+    <title>AI 到底怎么样了 · 教案</title>
+  </head>
+  <body class="lesson light">
+    <div class="lesson-progress"></div>
+
+    <!-- ============ 第一部分 · 第一块：Hero ============ -->
+    <section class="lesson-hero">
+      <div class="lesson-hero-bg">
+        <!-- 【可替换图片】把素材命名为 assets/lesson-status.jpg 后改这里 src 即可 -->
+        <img
+          src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=2400&q=80"
+          alt="AI 抽象背景"
+        />
+      </div>
+      <div class="inner">
+        <h1 class="reveal">AI 到底<br />怎么样了？</h1>
+        <p class="hero-sub reveal d2">
+          市场怎么了？大厂在做什么？行业头部客户在做什么？我们该怎么办？
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ 第一部分 · 第二块：市场在投什么 ============ -->
+    <section class="lesson-block">
+      <div class="inner">
+        <h2 class="lesson-h reveal">市场，在投什么？</h2>
+        <p class="lesson-lead reveal d1">
+          资本是最敏感的嗅觉。看它把钱押在哪，就知道风往哪吹 —— 哪怕这些公司还在亏钱。
+        </p>
+
+        <div class="case-stack">
+          <div class="case-card reveal">
+            <div class="case-media">
+              <img
+                src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=900&q=80"
+                alt="Anthropic · 前沿模型公司"
+              />
+            </div>
+            <div class="case-body">
+              <div class="metric">亏损 · 市值万亿</div>
+              <h3>一家还在亏钱的公司，市值已达万亿级</h3>
+              <p>
+                以 Anthropic 为代表的前沿模型公司，尚未盈利、持续高投入，
+                估值却被资本一路推高 —— 市场买的不是当下利润，是未来的"操作系统"。
+              </p>
+            </div>
+          </div>
+
+          <div class="case-card flip reveal">
+            <div class="case-media">
+              <img
+                src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=900&q=80"
+                alt="智谱 · 国内 AI 公司"
+              />
+            </div>
+            <div class="case-body">
+              <div class="metric">营收 7 亿 · 市值超阿里</div>
+              <h3>营收数亿的公司，市值反超巨头</h3>
+              <p>
+                像智谱这样的 AI 公司，营收规模还远不及传统巨头，
+                资本市场给出的估值却能与之比肩甚至反超 —— 押的是"谁定义下一个十年"。
+              </p>
+            </div>
+          </div>
+
+          <div class="case-card reveal">
+            <div class="case-media">
+              <img
+                src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=900&q=80"
+                alt="股票行情 · 资本市场"
+              />
+            </div>
+            <div class="case-body">
+              <div class="metric">全球热钱 · 持续涌入</div>
+              <h3>不只是个例，是一整条赛道在被重估</h3>
+              <p>
+                从基础模型到芯片、云、应用，资本沿着整条 AI 产业链布局。
+                这不是一两家公司的故事，而是整个市场在重新定价"智能"。
+              </p>
+            </div>
+          </div>
+        </div>
+        <p class="lesson-lead reveal d2" style="margin-top: 28px; font-size: 14px; color: var(--txt-500)">
+          * 以上为讲解示意，授课时可替换为当下最新的真实估值/营收数据。
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ 大厂在干什么 · 拆成多屏证据 ============ -->
+
+    <!-- 投资算力（柱状图） -->
+    <section class="lesson-block dim-page">
+      <div class="inner">
+        <h2 class="lesson-h reveal" style="grid-column: 1 / -1; text-align: center; margin-bottom: 8px">
+          大厂，在干什么？
+        </h2>
+        <div class="chart-box reveal">
+          <div class="chart-title">四大巨头 2024 年资本开支（亿美元，约数）</div>
+          <div class="bars">
+            <div class="bar">
+              <span class="bv">$510</span>
+              <div class="col" style="--h: 92%"></div>
+              <span class="bl">亚马逊</span>
+            </div>
+            <div class="bar">
+              <span class="bv">$510</span>
+              <div class="col" style="--h: 92%"></div>
+              <span class="bl">微软</span>
+            </div>
+            <div class="bar">
+              <span class="bv">$500</span>
+              <div class="col" style="--h: 90%"></div>
+              <span class="bl">谷歌</span>
+            </div>
+            <div class="bar">
+              <span class="bv">$390</span>
+              <div class="col" style="--h: 70%"></div>
+              <span class="bl">Meta</span>
+            </div>
+          </div>
+        </div>
+        <div class="dim-text reveal d1">
+          <h2>投资 · 算力 —— 千亿级资本开支</h2>
+          <p>
+            微软、谷歌、Meta、亚马逊等巨头持续加码数据中心与算力，单季资本开支屡创新高，
+            四家一年合计投入近 <b style="color: var(--cyan-soft)">2000 亿美元</b>。
+            真金白银的投入，本身就是大厂"All in AI"最直接的证据。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 证据二 · 基础模型竞赛（横向条 + 迭代数据） -->
+    <section class="lesson-block dim-page dim-page-rev">
+      <div class="inner">
+        <div class="chart-box reveal">
+          <div class="chart-title">头部模型综合能力（公开评测对比，示意）</div>
+          <div class="hbars">
+            <div class="hbar">
+              <div class="hbar-top">
+                <span class="hbar-name">OpenAI · GPT 系列</span>
+                <span class="hbar-val">95</span>
+              </div>
+              <div class="track"><div class="fill" style="--w: 95%"></div></div>
+            </div>
+            <div class="hbar">
+              <div class="hbar-top">
+                <span class="hbar-name">Anthropic · Claude</span>
+                <span class="hbar-val">93</span>
+              </div>
+              <div class="track"><div class="fill" style="--w: 93%"></div></div>
+            </div>
+            <div class="hbar">
+              <div class="hbar-top">
+                <span class="hbar-name">Google · Gemini</span>
+                <span class="hbar-val">90</span>
+              </div>
+              <div class="track"><div class="fill" style="--w: 90%"></div></div>
+            </div>
+          </div>
+          <div class="kpis" style="margin-top: 22px">
+            <div class="kpi">
+              <div class="kn">3-6 月</div>
+              <div class="kl">头部模型一次大版本迭代的平均节奏</div>
+            </div>
+            <div class="kpi">
+              <div class="kn">100万+</div>
+              <div class="kl">长上下文 token，从几千飙升到百万级</div>
+            </div>
+          </div>
+        </div>
+        <div class="dim-text reveal d1">
+          <h2>基础模型 —— 能力一代代刷新天花板</h2>
+          <p>
+            OpenAI 的 GPT、Anthropic 的 Claude、Google 的 Gemini 你追我赶：
+            从对话到多模态、再到推理与"智能体"。Claude 主打长上下文与编程，
+            在代码、长文档、Agent 工具调用上表现突出 —— 几乎每隔几个月，能力上限就被重新定义一次。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 证据三 · 全面集成（占比条） -->
+    <section class="lesson-block dim-page">
+      <div class="inner">
+        <div class="chart-box reveal">
+          <div class="chart-title">大厂把 AI 铺进主流入口的渗透情况（示意）</div>
+          <div class="hbars">
+            <div class="hbar">
+              <div class="hbar-top">
+                <span class="hbar-name">办公套件（Office / Workspace）</span>
+                <span class="hbar-val">已全面集成</span>
+              </div>
+              <div class="track"><div class="fill" style="--w: 96%"></div></div>
+            </div>
+            <div class="hbar">
+              <div class="hbar-top">
+                <span class="hbar-name">搜索引擎</span>
+                <span class="hbar-val">已默认开启</span>
+              </div>
+              <div class="track"><div class="fill" style="--w: 90%"></div></div>
+            </div>
+            <div class="hbar">
+              <div class="hbar-top">
+                <span class="hbar-name">开发者工具 / IDE</span>
+                <span class="hbar-val">广泛接入</span>
+              </div>
+              <div class="track"><div class="fill" style="--w: 88%"></div></div>
+            </div>
+            <div class="hbar">
+              <div class="hbar-top">
+                <span class="hbar-name">操作系统 / 手机</span>
+                <span class="hbar-val">逐步内置</span>
+              </div>
+              <div class="track"><div class="fill" style="--w: 75%"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="dim-text reveal d1">
+          <h2>产品 —— AI 铺进每天都在用的入口</h2>
+          <p>
+            Gemini 进了搜索、办公和安卓；Copilot 进了 Office 和 Windows；
+            编程助手进了几乎所有主流 IDE。大厂不只是"做了一个 AI"，
+            而是把 AI 当成默认能力，<b style="color: var(--cyan-soft)">塞进你每天都要打开的入口</b>。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 证据四 · 国产大模型（标签云 + KPI） -->
+    <section class="lesson-block dim-page dim-page-rev">
+      <div class="inner">
+        <div class="chart-box reveal">
+          <div class="chart-title">国内主要厂商的大模型矩阵</div>
+          <div class="vendor-tags">
+            <span class="vt">阿里 · <b>通义</b></span>
+            <span class="vt">字节 · <b>豆包</b></span>
+            <span class="vt">腾讯 · <b>混元</b></span>
+            <span class="vt">百度 · <b>文心</b></span>
+            <span class="vt">智谱 · <b>GLM</b></span>
+            <span class="vt">深度求索 · <b>DeepSeek</b></span>
+            <span class="vt">月之暗面 · <b>Kimi</b></span>
+            <span class="vt">MiniMax · <b>abab</b></span>
+          </div>
+          <div class="kpis" style="margin-top: 22px">
+            <div class="kpi">
+              <div class="kn">200+</div>
+              <div class="kl">国内已备案的大模型数量（持续增长）</div>
+            </div>
+            <div class="kpi">
+              <div class="kn">每周</div>
+              <div class="kl">都有新模型、新版本或新产品发布</div>
+            </div>
+          </div>
+        </div>
+        <div class="dim-text reveal d1">
+          <h2>国内大厂 —— 大模型百花齐放</h2>
+          <p>
+            阿里通义、字节豆包、腾讯混元、百度文心、智谱 GLM、深度求索 DeepSeek……
+            国内厂商持续上新，备案模型已达数百个。从基础模型到上层应用，
+            AI 搜索、编程助手、设计工具、办公助手几乎每周都在发布 —— 竞争之激烈，本身就是热度的证明。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 第一部分 · 第四块：产品在出什么（名词云） ============ -->
+    <section class="lesson-block">
+      <div class="inner">
+        <h2 class="lesson-h reveal">产品，在出什么？</h2>
+        <p class="lesson-lead reveal d1">
+          新名词层出不穷，快到你还没搞懂上一个，下一个又来了。先别慌 —— 它们其实在拼一张图。
+        </p>
+
+        <div class="term-cloud">
+          <span class="term sz-4 hot">大模型</span>
+          <span class="term sz-2">Prompt</span>
+          <span class="term sz-3">Agent</span>
+          <span class="term sz-1">RAG</span>
+          <span class="term sz-3 hot">MCP</span>
+          <span class="term sz-2">微调</span>
+          <span class="term sz-1">向量数据库</span>
+          <span class="term sz-4">多模态</span>
+          <span class="term sz-2">Skill</span>
+          <span class="term sz-1">Token</span>
+          <span class="term sz-3">推理模型</span>
+          <span class="term sz-2 hot">工作流</span>
+          <span class="term sz-1">Function Call</span>
+          <span class="term sz-2">知识库</span>
+          <span class="term sz-3">Copilot</span>
+          <span class="term sz-1">蒸馏</span>
+          <span class="term sz-2">上下文</span>
+          <span class="term sz-1">幻觉</span>
+          <span class="term sz-3 hot">智能体</span>
+          <span class="term sz-2">文生图</span>
+          <span class="term sz-1">文生视频</span>
+          <span class="term sz-2">开源模型</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 第一部分 · 第五块：一组数据 ============ -->
+    <section class="lesson-block">
+      <div class="inner">
+        <h2 class="lesson-h reveal">一组数据，讲明白</h2>
+        <p class="lesson-lead reveal d1">
+          为什么必须跟进 AI？不是因为它"很潮"，而是因为 —— 不跟进，就会被跟进的人替代。
+        </p>
+
+        <div class="stat-grid">
+          <div class="stat reveal">
+            <div class="num">80%+</div>
+            <div class="label">企业已在尝试或部署生成式 AI</div>
+          </div>
+          <div class="stat reveal d1">
+            <div class="num">2&times;</div>
+            <div class="label">用 AI 辅助的人，部分任务效率翻倍</div>
+          </div>
+          <div class="stat reveal d2">
+            <div class="num">数亿</div>
+            <div class="label">岗位的工作内容将被 AI 重塑</div>
+          </div>
+          <div class="stat reveal d3">
+            <div class="num">每周</div>
+            <div class="label">都有新模型 / 新产品发布的更新节奏</div>
+          </div>
+        </div>
+        <p class="lesson-lead reveal d2" style="margin-top: 36px">
+          真正淘汰你的，从来不是 AI 本身，而是<b style="color: var(--cyan-soft)">先学会用 AI 的人</b>。
+        </p>
+        <p class="lesson-lead reveal d3" style="margin-top: 14px; font-size: 14px; color: var(--txt-500)">
+          * 数据为趋势示意，授课时可替换为权威机构（麦肯锡 / 斯坦福 HAI / IDC 等）的最新报告数据。
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ 第二部分 · 分隔 ============ -->
+    <section class="part-divider lesson-block">
+      <div class="inner">
+        <h2 class="reveal d1">AI 到底怎么样了，<br />我从四个维度拆给你看</h2>
+      </div>
+    </section>
+
+    <!-- 维度一 · 大厂产品 -->
+    <section class="lesson-block dim-page">
+      <div class="inner">
+        <div class="dim-figure reveal">
+          <span class="dim-no">01</span>
+          <img
+            src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1100&q=80"
+            alt="大厂产品维度"
+          />
+        </div>
+        <div class="dim-text reveal d1">
+          <span class="dim-tag">维度一</span>
+          <h2>大厂产品维度 —— 各大厂在做什么方向</h2>
+          <p>
+            谁在做底层模型、谁在做办公 Copilot、谁在做搜索、谁在做开发者工具、谁在做硬件入口。
+            看清每家巨头押注的方向，就看清了赛道格局。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 维度二 · AI 产品 / 模型 -->
+    <section class="lesson-block dim-page">
+      <div class="inner">
+        <div class="dim-figure reveal">
+          <span class="dim-no">02</span>
+          <img
+            src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1100&q=80"
+            alt="AI 产品维度"
+          />
+        </div>
+        <div class="dim-text reveal d1">
+          <span class="dim-tag">维度二</span>
+          <h2>AI 产品维度 —— 各家的模型情况</h2>
+          <p>
+            GPT、Claude、Gemini、通义、豆包、混元、文心、GLM、DeepSeek……
+            各模型在推理、编程、长文本、多模态、价格上的差异，决定了它适合什么场景。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 维度三 · 行业 -->
+    <section class="lesson-block dim-page">
+      <div class="inner">
+        <div class="dim-figure reveal">
+          <span class="dim-no">03</span>
+          <img
+            src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1100&q=80"
+            alt="行业维度"
+          />
+        </div>
+        <div class="dim-text reveal d1">
+          <span class="dim-tag">维度三</span>
+          <h2>行业维度 —— 各行各业都在做什么</h2>
+          <p>
+            教育做个性化辅导、电商做智能客服与导购、医疗做辅助诊断、
+            金融做风控与投研、制造做质检与排产 —— 每个行业都在找自己的 AI 落点。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 维度四 · 工作职能 -->
+    <section class="lesson-block dim-page">
+      <div class="inner">
+        <div class="dim-figure reveal">
+          <span class="dim-no">04</span>
+          <img
+            src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1100&q=80"
+            alt="工作职能维度"
+          />
+        </div>
+        <div class="dim-text reveal d1">
+          <span class="dim-tag">维度四</span>
+          <h2>工作职能维度 —— 不同岗位的人在做什么</h2>
+          <p>
+            程序员用 AI 写代码、设计师用 AI 出图、运营用 AI 写文案、
+            销售用 AI 做客户分析、管理者用 AI 做决策辅助 —— 每个岗位都在被重新定义。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 第三部分 · 分隔 ============ -->
+    <section class="part-divider lesson-block">
+      <div class="inner">
+        <h2 class="reveal d1">那么，我们<br />应该怎么做？</h2>
+      </div>
+    </section>
+
+    <!-- 行动一 · 复盘 -->
+    <section class="lesson-block dim-page">
+      <div class="inner">
+        <div class="dim-figure reveal">
+          <span class="dim-no">1</span>
+          <img
+            src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1100&q=80"
+            alt="复盘：头部的人在做什么"
+          />
+        </div>
+        <div class="dim-text reveal d1">
+          <span class="dim-tag">第一步 · 复盘</span>
+          <h2>复盘 —— 头部的人在做什么</h2>
+          <p>
+            看清自己行业里的头部客户、头部职位的人，正在用 AI 做哪些事 —— 他们就是你的标杆。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 行动二 · 对照 -->
+    <section class="lesson-block dim-page dim-page-rev">
+      <div class="inner">
+        <div class="dim-figure reveal">
+          <span class="dim-no">2</span>
+          <img
+            src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1100&q=80"
+            alt="对照：自己和他们差在哪"
+          />
+        </div>
+        <div class="dim-text reveal d1">
+          <span class="dim-tag">第二步 · 对照</span>
+          <h2>对照 —— 自己和他们差在哪</h2>
+          <p>
+            把自己当前的工作方式和他们对比，找出差距 —— 差距就是你最该补的地方。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 行动三 · 选型 -->
+    <section class="lesson-block dim-page">
+      <div class="inner">
+        <div class="dim-figure reveal">
+          <span class="dim-no">3</span>
+          <img
+            src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1100&q=80"
+            alt="选型：大厂有什么产品、什么模型"
+          />
+        </div>
+        <div class="dim-text reveal d1">
+          <span class="dim-tag">第三步 · 选型</span>
+          <h2>选型 —— 大厂有什么产品、什么模型</h2>
+          <p>
+            盘点可用的大厂产品和模型，按你的场景挑出趁手的工具，不必追新，够用且稳定最重要。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 行动四 · 沉淀 -->
+    <section class="lesson-block dim-page dim-page-rev">
+      <div class="inner">
+        <div class="dim-figure reveal">
+          <span class="dim-no">4</span>
+          <img
+            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1100&q=80"
+            alt="沉淀：搭自己的工作流、工具库、知识库"
+          />
+        </div>
+        <div class="dim-text reveal d1">
+          <span class="dim-tag">第四步 · 沉淀</span>
+          <h2>沉淀 —— 搭自己的工作流、工具库、知识库</h2>
+          <p>
+            把好用的流程固化成工作流，把工具收进工具库，把经验沉进知识库 —— 让 AI 成为你能复用的能力资产。
+          </p>
+          <p class="lesson-lead reveal d2" style="margin-top: 32px">
+            AI 的差距，不可能靠一个人填补。<br />
+            <b style="color: var(--cyan-soft)">学会它，去补平你所在行业、每个角落的差距。</b>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="lesson-foot">
+      © <span data-year></span> AI for Everyone · 教案《AI 到底怎么样了》
+    </footer>
+
+    <a class="lesson-back" href="lessons.html">← 返回教案列表</a>
+
+    <script src="js/auth.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/lessons.js"></script>
+    <script>
+      document.querySelector('[data-year]').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

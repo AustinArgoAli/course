@@ -18,6 +18,7 @@ function renderNavActions() {
         : `<span>${initial}</span>`;
 
     box.innerHTML = `
+      <a href="lessons.html" class="nav-link">教程文案</a>
       <a href="videos.html" class="nav-link">视频教程</a>
       <a href="profile.html" class="nav-link nav-home" title="个人主页">
         <span class="nav-avatar">${avatarInner}</span>

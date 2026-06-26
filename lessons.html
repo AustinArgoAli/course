@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="AI for Everyone · 教程文案 —— 用网页讲清楚 AI" />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <title>教程文案 · AI for Everyone</title>
+    <!-- 登录守卫：未登录立即跳登录页 -->
+    <script>
+      (function () {
+        try {
+          if (!JSON.parse(localStorage.getItem('afe.user') || 'null')) {
+            window.location.replace('login.html');
+          }
+        } catch (e) {
+          window.location.replace('login.html');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="page">
+      <header class="navbar solid">
+        <div class="container nav-inner">
+          <a href="index.html" class="brand">
+            <span class="logo">AI</span>
+            <span class="brand-name">AI for Everyone</span>
+          </a>
+          <nav class="nav-actions" data-nav-actions></nav>
+        </div>
+      </header>
+
+      <main class="videos-main">
+        <div class="videos-head">
+          <p class="welcome">欢迎回来，<b data-user-email></b></p>
+          <h1>教程文案</h1>
+          <p class="desc">
+            AI 时代开源互动教案，每一个教案都可以被看见
+          </p>
+        </div>
+
+        <div class="video-grid">
+          <a class="card video-card" href="lesson-ai-status.html">
+            <div class="video-thumb">
+              <img
+                src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=900&q=80"
+                alt="AI 到底怎么样了"
+              />
+              <div class="thumb-overlay"></div>
+              <span class="tag">现状</span>
+            </div>
+            <div class="video-body">
+              <h3>AI 到底怎么样了</h3>
+              <p>从市场、大厂、产品到数据，一节课看懂 AI 现在走到了哪。</p>
+            </div>
+          </a>
+
+          <a class="card video-card" href="lesson-ai-what.html">
+            <div class="video-thumb">
+              <img
+                src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=900&q=80"
+                alt="AI 是什么"
+              />
+              <div class="thumb-overlay"></div>
+              <span class="tag">概念</span>
+            </div>
+            <div class="video-body">
+              <h3>AI 是什么</h3>
+              <p>抛开术语，用生活化的方式理解 AI 的本质与边界。</p>
+            </div>
+          </a>
+
+          <a class="card video-card" href="lesson-ai-llm.html">
+            <div class="video-thumb">
+              <img
+                src="assets/ai-models-collage.png"
+                alt="AI 大模型是什么"
+              />
+              <div class="thumb-overlay"></div>
+              <span class="tag">大模型</span>
+            </div>
+            <div class="video-body">
+              <h3>AI 大模型是什么</h3>
+              <p>大模型为什么"大"？它是怎么学会说话和思考的。</p>
+            </div>
+          </a>
+
+          <a class="card video-card" href="lesson-ai-agent.html">
+            <div class="video-thumb">
+              <img
+                src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=900&q=80"
+                alt="AI Agent 是什么"
+              />
+              <div class="thumb-overlay"></div>
+              <span class="tag">智能体</span>
+            </div>
+            <div class="video-body">
+              <h3>AI Agent 是什么</h3>
+              <p>从"会聊天"到"会做事"，智能体如何替你完成任务。</p>
+            </div>
+          </a>
+        </div>
+
+        <p class="videos-note">
+          * 点击任意教案卡片，即可打开可直接放映的课件页面。
+        </p>
+      </main>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+      (function () {
+        var user = AUTH.getUser();
+        var el = document.querySelector('[data-user-email]');
+        if (el && user) el.textContent = user.email;
+      })();
+    </script>
+  </body>
+</html>

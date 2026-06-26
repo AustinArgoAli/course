@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="AI 大模型是什么 —— 课堂教案" />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/lessons.css" />
+    <title>AI 大模型是什么 · 教案</title>
+  </head>
+  <body class="lesson">
+    <div class="lesson-progress"></div>
+
+    <header class="navbar solid lesson-nav">
+      <div class="container nav-inner">
+        <a href="index.html" class="brand">
+          <span class="logo">AI</span>
+          <span class="brand-name">AI for Everyone</span>
+        </a>
+        <nav class="nav-actions" data-nav-actions></nav>
+      </div>
+    </header>
+
+    <section class="lesson-hero">
+      <div class="lesson-hero-bg">
+        <img
+          src="https://images.unsplash.com/photo-1655720828018-edd2daec9349?auto=format&fit=crop&w=2400&q=80"
+          alt="神经网络抽象背景"
+        />
+      </div>
+      <div class="inner">
+        <h1 class="reveal">大模型<br />是什么？</h1>
+        <p class="hero-sub reveal d2">
+          为什么它叫"大"模型？它又是怎么学会像人一样说话、写作、写代码的？
+        </p>
+      </div>
+    </section>
+
+    <section class="lesson-block">
+      <div class="inner">
+        <span class="lesson-kicker reveal">大在哪</span>
+        <h2 class="lesson-h reveal">"大"，大在数据、参数和算力</h2>
+        <div class="stat-grid">
+          <div class="stat reveal">
+            <div class="num">海量</div>
+            <div class="label">用近乎整个互联网的文本来训练</div>
+          </div>
+          <div class="stat reveal d1">
+            <div class="num">千亿</div>
+            <div class="label">参数量级，决定了它的"脑容量"</div>
+          </div>
+          <div class="stat reveal d2">
+            <div class="num">万卡</div>
+            <div class="label">规模的算力集群，训练一次成本极高</div>
+          </div>
+          <div class="stat reveal d3">
+            <div class="num">通用</div>
+            <div class="label">一个模型，能应对成千上万种任务</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lesson-block">
+      <div class="inner">
+        <span class="lesson-kicker reveal">怎么学会的</span>
+        <h2 class="lesson-h reveal">它的核心，是"预测下一个词"</h2>
+        <p class="lesson-lead reveal d1">
+          大模型的训练，本质上是一个超大规模的"文字接龙"：给它看海量文本，让它不断预测
+          "下一个字最可能是什么"。练得足够多之后，它就学会了语法、知识、逻辑，甚至推理。
+        </p>
+        <div class="dim-list">
+          <div class="dim-item reveal">
+            <div class="n">01</div>
+            <div>
+              <h4>预训练：读遍海量文本</h4>
+              <p>把互联网级别的文字喂给它，学会语言的统计规律和世界知识。</p>
+            </div>
+          </div>
+          <div class="dim-item reveal d1">
+            <div class="n">02</div>
+            <div>
+              <h4>对齐：学会"好好说话"</h4>
+              <p>通过人类反馈训练，让它的回答更有用、更安全、更符合人的期待。</p>
+            </div>
+          </div>
+          <div class="dim-item reveal d2">
+            <div class="n">03</div>
+            <div>
+              <h4>使用：你给提示，它来生成</h4>
+              <p>你输入的提示词（Prompt）越清楚，它给出的结果就越贴合需求。</p>
+            </div>
+          </div>
+        </div>
+        <p class="lesson-lead reveal d2" style="margin-top: 24px; font-size: 14px; color: var(--txt-500)">
+          * 本页为示例内容框架，可在此基础上补充你自己的讲解与案例。
+        </p>
+      </div>
+    </section>
+
+    <footer class="lesson-foot">© <span data-year></span> AI for Everyone · 教案《AI 大模型是什么》</footer>
+    <a class="lesson-back" href="lessons.html">← 返回教案列表</a>
+
+    <script src="js/auth.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/lessons.js"></script>
+    <script>
+      document.querySelector('[data-year]').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

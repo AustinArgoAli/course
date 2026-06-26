@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="AI 是什么 —— 课堂教案" />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/lessons.css" />
+    <title>AI 是什么 · 教案</title>
+  </head>
+  <body class="lesson">
+    <div class="lesson-progress"></div>
+
+    <header class="navbar solid lesson-nav">
+      <div class="container nav-inner">
+        <a href="index.html" class="brand">
+          <span class="logo">AI</span>
+          <span class="brand-name">AI for Everyone</span>
+        </a>
+        <nav class="nav-actions" data-nav-actions></nav>
+      </div>
+    </header>
+
+    <section class="lesson-hero">
+      <div class="lesson-hero-bg">
+        <img
+          src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=2400&q=80"
+          alt="AI 抽象背景"
+        />
+      </div>
+      <div class="inner">
+        <h1 class="reveal">AI 是什么？</h1>
+        <p class="hero-sub reveal d2">
+          抛开复杂的术语，我们用最朴素的方式，把"人工智能"这四个字讲清楚。
+        </p>
+      </div>
+    </section>
+
+    <section class="lesson-block">
+      <div class="inner">
+        <span class="lesson-kicker reveal">一句话理解</span>
+        <h2 class="lesson-h reveal">AI，就是让机器"像人一样处理信息"</h2>
+        <p class="lesson-lead reveal d1">
+          人能看、能听、能读、能说、能判断。AI 就是想让机器也具备这些能力 ——
+          看懂图片、听懂语音、读懂文字、写出回答、做出决策。它不是魔法，而是一套从数据里学规律的方法。
+        </p>
+      </div>
+    </section>
+
+    <section class="lesson-block">
+      <div class="inner">
+        <span class="lesson-kicker reveal">三个层次</span>
+        <h2 class="lesson-h reveal">从"会算"到"会学"再到"会创造"</h2>
+        <div class="dim-list">
+          <div class="dim-item reveal">
+            <div class="n">01</div>
+            <div>
+              <h4>规则时代：人写死规则</h4>
+              <p>早期 AI 靠人把"如果……就……"的规则一条条写进去，能力上限取决于人能想到多少规则。</p>
+            </div>
+          </div>
+          <div class="dim-item reveal d1">
+            <div class="n">02</div>
+            <div>
+              <h4>机器学习：从数据里找规律</h4>
+              <p>不再人工写规则，而是喂大量数据让机器自己总结规律，比如从十万张猫的照片里学会"什么是猫"。</p>
+            </div>
+          </div>
+          <div class="dim-item reveal d2">
+            <div class="n">03</div>
+            <div>
+              <h4>生成式 AI：不仅会判断，还会创造</h4>
+              <p>今天的 AI 不只回答"是不是猫"，还能画一只猫、写一段关于猫的文案 —— 这就是生成式 AI。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lesson-block">
+      <div class="inner">
+        <span class="lesson-kicker reveal">边界</span>
+        <h2 class="lesson-h reveal">它很强，但不是万能</h2>
+        <p class="lesson-lead reveal d1">
+          AI 擅长处理有规律、有数据的问题，但它会"一本正经地出错"（幻觉），也不真正"理解"世界。
+          把它当成一个聪明但需要你把关的助手，而不是无所不能的神。
+        </p>
+        <p class="lesson-lead reveal d2" style="margin-top: 24px; font-size: 14px; color: var(--txt-500)">
+          * 本页为示例内容框架，可在此基础上补充你自己的讲解与案例。
+        </p>
+      </div>
+    </section>
+
+    <footer class="lesson-foot">© <span data-year></span> AI for Everyone · 教案《AI 是什么》</footer>
+    <a class="lesson-back" href="lessons.html">← 返回教案列表</a>
+
+    <script src="js/auth.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/lessons.js"></script>
+    <script>
+      document.querySelector('[data-year]').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
